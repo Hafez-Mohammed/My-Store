@@ -44,7 +44,9 @@ class Settings extends StatelessWidget {
         SettingCard(
           text: "Contact us",
           icon: Icons.call_end_rounded,
-          onTap: () {},
+          onTap: () {
+            controller.makePhoneCall();
+          },
         ),
         SizedBox(
           height: 20,
