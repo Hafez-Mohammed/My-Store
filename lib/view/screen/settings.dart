@@ -36,10 +36,38 @@ class Settings extends StatelessWidget {
                   controller.goToAddresses();
                 },
               ),
-              SettingCard(
-                text: "Language",
-                icon: Icons.language_outlined,
-                onTap: () {},
+              // SettingCard(
+              //   text: "Language",
+              //   icon: Icons.language_outlined,
+              //   onTap: () {
+
+              //   },
+              // ),
+              Card(
+                child: PopupMenuButton(
+                  child: ListTile(
+                    leading: Icon(
+                      Icons.language_outlined,
+                      size: 25,
+                      color: Colors.orange[300],
+                    ),
+                    title: Text("Language"),
+                  ),
+                  itemBuilder: (context) => [
+                    PopupMenuItem(
+                      child: Text("Arabic"),
+                      onTap: () {
+                        controller.setLangArabic();
+                      },
+                    ),
+                    PopupMenuItem(
+                      child: Text("English"),
+                      onTap: () {
+                        controller.setLangEnglish();
+                      },
+                    ),
+                  ],
+                ),
               ),
               SettingCard(
                 text: "About us",

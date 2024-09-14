@@ -1,7 +1,9 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_store/core/classes/request_status.dart';
 import 'package:my_store/core/constants/app_routes.dart';
+import 'package:my_store/core/constants/app_theme.dart';
 import 'package:my_store/core/functions/handling_data.dart';
 import 'package:my_store/core/functions/show_erorr_dialog.dart';
 import 'package:my_store/core/functions/show_noInternet_snackbar.dart';
@@ -85,5 +87,17 @@ class SettingsController extends GetxController {
       update();
       Get.snackbar("Erorr", "Something went wrong!");
     }
+  }
+
+  setLangArabic() {
+    Get.changeTheme(AppTheme.arabicLightTheme);
+    Get.updateLocale(const Locale("ar"));
+    services.preferences.setString('codeLang', "ar");
+  }
+
+  setLangEnglish() {
+    Get.changeTheme(AppTheme.englishLightTheme);
+    Get.updateLocale(const Locale("en"));
+    services.preferences.setString('codeLang', "en");
   }
 }
