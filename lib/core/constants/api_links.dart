@@ -58,4 +58,6 @@ class ApiLinks {
   // ====================== Notification
   static const String notifications = "$server/notifications/view.php";
   static const String deleteNotification = "$server/notifications/delete.php";
+  static const String controrlNotification = "$server/notifications/enable.php";
+
 }

@@ -48,6 +48,7 @@ class LoginController extends GetxController {
           services.preferences.setString("email", response['data']['email']);
           services.preferences.setString("phone", response['data']['phone']);
           services.preferences.setString("step", "2");
+          services.preferences.setBool("notification", true);
           FirebaseMessaging.instance.getToken().then((value) {
             loginData!.addUserToken(response['data']['id'], value!);
           });

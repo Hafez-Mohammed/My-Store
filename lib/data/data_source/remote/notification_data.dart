@@ -16,4 +16,14 @@ class NotificationData {
         await crud.postData(ApiLinks.deleteNotification, {"id": "$id"});
     return response.fold((l) => l, (r) => r);
   }
+
+  updateNotificationStatus(
+      int userId, String? token, bool? notificationEnable) async {
+    var response = await crud.postData(ApiLinks.controrlNotification, {
+      "userId": "$userId",
+      "token": token,
+      "isEnabled": notificationEnable!? "1" : "0"
+    });
+    return response.fold((l) => l, (r) => r);
+  }
 }

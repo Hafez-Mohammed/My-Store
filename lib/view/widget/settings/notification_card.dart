@@ -1,5 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:my_store/controller/settings_controller.dart';
 
 class NotificationCard extends StatelessWidget {
   final void Function(bool)? onSwitchChanged;
@@ -7,7 +9,8 @@ class NotificationCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
+    SettingsController controller = Get.find();
+    return GetBuilder<SettingsController>(builder: (controller) => Card(
           child: ListTile(
             title: const Text("Notifications"),
             leading: Icon(
@@ -18,10 +21,10 @@ class NotificationCard extends StatelessWidget {
             trailing: Switch(
               dragStartBehavior: DragStartBehavior.down,
               activeColor: Colors.blue,
-              value: true,
+              value: controller.notificationEnable!,
               onChanged: onSwitchChanged,
             ),
           ),
-        );
+        ),);
   }
 }
