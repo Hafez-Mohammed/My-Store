@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_store/controller/home_screen_controller.dart';
+import 'package:my_store/core/functions/alert_app_exit.dart';
 import 'package:my_store/view/widget/custom_bottom_navigation_bar.dart';
 import 'package:my_store/view/widget/homepage/custom_appbar.dart';
 
@@ -13,18 +14,23 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     Get.put(HomeScreenControllerImp());
     return GetBuilder<HomeScreenControllerImp>(
-      builder: (controller) => Scaffold(
-        resizeToAvoidBottomInset: false,
-        appBar: controller.currentPage == 0
-            ? CustomAppBar(
-                onPressedOrderIcon: () {},
-                onPressedFavoriteIcon: () {
-                  controller.goToMyFavorites();
-                },
-              )
-            : null,
-        bottomNavigationBar: CustomBottomNavigationBar(),
-        body: controller.pages[controller.currentPage]
+      builder: (controller) => PopScope(
+        canPop: false,
+        onPopInvoked: (didPop) {
+          alertAppExit();
+        },
+        child: Scaffold(
+            resizeToAvoidBottomInset: false,
+            appBar: controller.currentPage == 0
+                ? CustomAppBar(
+                    onPressedOrderIcon: () {},
+                    onPressedFavoriteIcon: () {
+                      controller.goToMyFavorites();
+                    },
+                  )
+                : null,
+            bottomNavigationBar: CustomBottomNavigationBar(),
+            body: controller.pages[controller.currentPage]),
       ),
     );
   }

@@ -7,6 +7,8 @@ class ProductModel {
   String? image;
   int? price;
   double? disPrice;
+  int? reviewers;
+  int? rate;
   int? quantity;
   int? discount;
   int? hidden;
@@ -27,6 +29,8 @@ class ProductModel {
       this.image,
       this.price,
       this.disPrice,
+      this.reviewers,
+      this.rate,
       this.quantity,
       this.discount,
       this.hidden,
@@ -36,8 +40,7 @@ class ProductModel {
       this.catNameAr,
       this.catImage,
       this.catDate,
-      this.isfavorite
-      });
+      this.isfavorite});
 
   ProductModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -48,6 +51,8 @@ class ProductModel {
     image = json['image'];
     price = json['price'];
     disPrice = double.parse("${json['dis_price']}");
+    reviewers = json['reviewers'];
+    rate = json['rate'];
     quantity = json['quantity'];
     discount = json['discount'];
     hidden = json['hidden'];
@@ -58,7 +63,6 @@ class ProductModel {
     catImage = json['cat_image'];
     catDate = json['cat_date'];
     isfavorite = json['isfavorite'];
-
   }
 
   Map<String, dynamic> toJson() {
@@ -71,6 +75,8 @@ class ProductModel {
     data['image'] = image;
     data['price'] = price;
     data['dis_price'] = disPrice;
+    data['reviewers'] = reviewers;
+    data['rate'] = rate;
     data['quantity'] = quantity;
     data['discount'] = discount;
     data['hidden'] = hidden;

@@ -54,7 +54,10 @@ class ProductDetails extends StatelessWidget {
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 5),
-                  child: RaitingComponent(),
+                  child: RatingComponent(
+                    reviewers: controller.productModel.reviewers,
+                    rate: controller.productModel.rate,
+                  ),
                 ),
 
                 // Product price

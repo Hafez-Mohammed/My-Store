@@ -8,6 +8,8 @@ class FavoriteProductModel {
   String? image;
   int? price;
   double? disPrice;
+  int? reviewers;
+  int? rate;
   int? quantity;
   int? discount;
   int? hidden;
@@ -25,6 +27,8 @@ class FavoriteProductModel {
       this.image,
       this.price,
       this.disPrice,
+      this.reviewers,
+      this.rate,
       this.quantity,
       this.discount,
       this.hidden,
@@ -42,6 +46,8 @@ class FavoriteProductModel {
     image = json['image'];
     price = json['price'];
     disPrice = double.parse("${json['dis_price']}");
+    reviewers = json['reviewers'];
+    rate = json['rate'];
     quantity = json['quantity'];
     discount = json['discount'];
     hidden = json['hidden'];
@@ -61,6 +67,8 @@ class FavoriteProductModel {
     data['image'] = this.image;
     data['price'] = this.price;
     data['dis_price'] = disPrice;
+    data['reviewers'] = reviewers;
+    data['rate'] = rate;
     data['quantity'] = this.quantity;
     data['discount'] = this.discount;
     data['hidden'] = this.hidden;

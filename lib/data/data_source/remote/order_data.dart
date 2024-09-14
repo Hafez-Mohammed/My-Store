@@ -25,4 +25,10 @@ class OrderData {
         await crud.postData(ApiLinks.orderProducts, {"orderId": "$orderId"});
     return response.fold((l) => l, (r) => r);
   }
+
+  insertProductRate(int? userId, int? productId, int rate) async {
+    var response = await crud.postData(ApiLinks.ratingProduct,
+        {"userId": "$userId", "productId": "$productId", "rate": "$rate"});
+    return response.fold((l) => l, (r) => r);
+  }
 }

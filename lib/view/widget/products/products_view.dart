@@ -1,6 +1,5 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:my_store/controller/favorite_controller.dart';
 import 'package:my_store/controller/products_controller.dart';
@@ -62,13 +61,30 @@ class ProductsView extends GetView<ProductsControllerImp> {
                                 "69".tr,
                                 style: TextStyle(fontSize: 14),
                               ),
-                              ...List.generate(
-                                  5,
-                                  (index) => Icon(
-                                        Icons.star,
-                                        color: Colors.yellow,
-                                        size: 20,
-                                      ))
+                              if (productModel.reviewers != 0)
+                                ...List.generate(
+                                    productModel.rate!,
+                                    (index) => Icon(
+                                          Icons.star,
+                                          color: Colors.yellow,
+                                          size: 20,
+                                        )),
+                              if (productModel.reviewers != 0)
+                                ...List.generate(
+                                    5 - productModel.rate!,
+                                    (index) => Icon(
+                                          Icons.star,
+                                          color: Colors.grey,
+                                          size: 20,
+                                        )),
+                              if (productModel.reviewers == 0)
+                                ...List.generate(
+                                    5,
+                                    (index) => Icon(
+                                          Icons.star,
+                                          color: Colors.grey,
+                                          size: 20,
+                                        )),
                             ],
                           ))
                     ],
@@ -94,13 +110,14 @@ class ProductsView extends GetView<ProductsControllerImp> {
                                 fontSize: 14, color: Colors.grey),
                           ),
                           Positioned(
-                            top: 8,
+                              top: 8,
                               child: Container(
-                            height: 0.6,
-                            width: 100,
-                            decoration: BoxDecoration(
-                                shape: BoxShape.rectangle, color: Colors.black),
-                          ))
+                                height: 0.6,
+                                width: 100,
+                                decoration: BoxDecoration(
+                                    shape: BoxShape.rectangle,
+                                    color: Colors.black),
+                              ))
                         ],
                       )
                     : SizedBox(),

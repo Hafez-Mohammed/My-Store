@@ -46,13 +46,30 @@ class FavoriteProductsView extends GetView<MyFavoritesController> {
                                 "69".tr,
                                 style: TextStyle(fontSize: 14),
                               ),
-                              ...List.generate(
-                                  5,
-                                  (index) => Icon(
-                                        Icons.star,
-                                        color: Colors.yellow,
-                                        size: 20,
-                                      ))
+                              if (productModel.reviewers != 0)
+                                ...List.generate(
+                                    productModel.rate!,
+                                    (index) => Icon(
+                                          Icons.star,
+                                          color: Colors.yellow,
+                                          size: 20,
+                                        )),
+                              if (productModel.reviewers != 0)
+                                ...List.generate(
+                                    5 - productModel.rate!,
+                                    (index) => Icon(
+                                          Icons.star,
+                                          color: Colors.grey,
+                                          size: 20,
+                                        )),
+                              if (productModel.reviewers == 0)
+                                ...List.generate(
+                                    5,
+                                    (index) => Icon(
+                                          Icons.star,
+                                          color: Colors.grey,
+                                          size: 20,
+                                        )),
                             ],
                           ))
                     ],

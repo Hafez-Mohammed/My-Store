@@ -62,6 +62,8 @@ class MyFavoritesController extends GetxController {
         price: model.price,
         isfavorite: 1,
         disPrice: model.disPrice,
+        reviewers: model.reviewers,
+        rate: model.rate,
         hidden: model.hidden,
         date: model.date,
         discount: model.discount,

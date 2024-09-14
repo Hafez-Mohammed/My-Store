@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_store/controller/orders/order_details_controller.dart';
 import 'package:my_store/core/classes/handling_data_view.dart';
+import 'package:my_store/core/classes/request_status.dart';
 import 'package:my_store/core/constants/app_colors.dart';
 import 'package:my_store/core/functions/translate_database.dart';
+import 'package:my_store/core/shared/custom_app_button.dart';
 import 'package:my_store/view/widget/order_details/order_cell_text.dart';
 import 'package:my_store/view/widget/order_details/order_column_name.dart';
 import 'package:my_store/view/widget/order_details/order_details_content.dart';
@@ -31,13 +33,14 @@ class OrderDetails extends StatelessWidget {
                 children: [
                   Table(
                     defaultVerticalAlignment: TableCellVerticalAlignment.middle,
-                    columnWidths: {0: FixedColumnWidth(150)},
+                    columnWidths: {0: FixedColumnWidth(120)},
                     children: [
                       // name of column
                       TableRow(children: [
                         OrderColumnName(text: "Product"),
                         OrderColumnName(text: "QTY"),
                         OrderColumnName(text: "Price"),
+                        Center()
                       ]),
                       ...List.generate(
                           controller.orderProducts.length,
@@ -52,6 +55,69 @@ class OrderDetails extends StatelessWidget {
                                 OrderCellText(
                                     text:
                                         "${controller.orderProducts[index].totalPrice!}"),
+                                CustomAppButton(
+                                  text: "Rate",
+                                  onPressed: () {
+                                    controller.resetRate();
+                                    Get.defaultDialog(
+                                      title: "Rating",
+                                      content: GetBuilder<
+                                              OrderDetailsController>(
+                                          builder: (controller) =>
+                                              controller.requestStatus2 ==
+                                                      RequestStatus.loading
+                                                  ? CircularProgressIndicator(
+                                                      color: AppColors
+                                                          .onboardingMainColor)
+                                                  : Row(
+                                                      children: [
+                                                        ...List.generate(
+                                                            5,
+                                                            (i) => IconButton(
+                                                                  onPressed:
+                                                                      () {
+                                                                    controller
+                                                                        .changeRate(
+                                                                            i);
+                                                                  },
+                                                                  icon:
+                                                                      TweenAnimationBuilder(
+                                                                    tween: ColorTween(
+                                                                        begin: Colors
+                                                                            .grey,
+                                                                        end: i <=
+                                                                                controller.rate - 1
+                                                                            ? Colors.yellow
+                                                                            : Colors.grey),
+                                                                    duration: Duration(
+                                                                        milliseconds:
+                                                                            600),
+                                                                    curve: Curves
+                                                                        .bounceIn,
+                                                                    builder: (context,
+                                                                            value,
+                                                                            child) =>
+                                                                        Icon(
+                                                                            Icons
+                                                                                .star,
+                                                                            color:
+                                                                                value),
+                                                                  ),
+                                                                  iconSize: 25,
+                                                                )),
+                                                      ],
+                                                    )),
+                                      onCancel: () {},
+                                      buttonColor:
+                                          AppColors.onboardingMainColor,
+                                      onConfirm: () {
+                                        controller.ratingProduct(
+                                            controller.orderProducts[index].id!,
+                                            controller.rate);
+                                      },
+                                    );
+                                  },
+                                )
                               ]))
                     ],
                   ),

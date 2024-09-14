@@ -52,6 +52,8 @@ class ApiLinks {
   static const String orders = "$server/order/view.php";
   static const String deleteOrder = "$server/order/delete.php";
   static const String orderProducts = "$server/order/details_view.php";
+  static const String ratingProduct = "$server/order/rating_product.php";
+
 
   // ====================== Notification
   static const String notifications = "$server/notifications/view.php";
