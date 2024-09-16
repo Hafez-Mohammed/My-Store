@@ -10,8 +10,9 @@ class OrderData {
     return response.fold((l) => l, (r) => r);
   }
 
-  getOrders(int? userId) async {
-    var response = await crud.postData(ApiLinks.orders, {"userId": "$userId"});
+  getOrders(int? userId, int limit, int page) async {
+    var response = await crud.postData(ApiLinks.orders,
+        {"userId": "$userId", "limit": "$limit", "page": "$page"});
     return response.fold((l) => l, (r) => r);
   }
 
