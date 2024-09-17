@@ -14,14 +14,14 @@ class Orders extends StatelessWidget {
     Get.lazyPut(() => OrdersController());
     return SafeArea(
       child: GetBuilder<OrdersController>(
-        builder: (controller) => HandlingDataView(
-            requestStatus: controller.requestStatus,
-            widget: RefreshIndicator.adaptive(
-              color: AppColors.onboardingMainColor,
-              onRefresh: () async {
-                await controller.refreshPage();
-              },
-              child: Column(
+        builder: (controller) => RefreshIndicator.adaptive(
+          color: AppColors.onboardingMainColor,
+          onRefresh: () async{
+            await controller.refreshPage();
+          },
+          child: HandlingDataView(
+              requestStatus: controller.requestStatus,
+              widget: Column(
                 children: [
                   Container(
                       height: 50,
@@ -65,8 +65,8 @@ class Orders extends StatelessWidget {
                                   )),
                   )
                 ],
-              ),
-            )),
+              )),
+        ),
       ),
     );
   }

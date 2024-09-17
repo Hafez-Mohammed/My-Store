@@ -9,9 +9,9 @@ import 'package:my_store/data/data_source/remote/home.dart';
 abstract class HomePageController extends GetxController {
   initialData();
   getData();
+  refreshPage();
   goToProducts(List categoriesList, int selectedCat);
   goToNotifications();
-
 }
 
 class HomePageControllerImp extends HomePageController {
@@ -20,8 +20,8 @@ class HomePageControllerImp extends HomePageController {
   int? userId;
   HomeData homeData = HomeData(crud: Get.find());
   late RequestStatus requestStatus;
-  TextEditingController searchText = TextEditingController(); 
-  
+  TextEditingController searchText = TextEditingController();
+
   List categories = [];
   List offers = [];
   List products = [];
@@ -41,6 +41,7 @@ class HomePageControllerImp extends HomePageController {
   @override
   getData() async {
     requestStatus = RequestStatus.loading;
+    update();
     var response = await homeData.getData();
     requestStatus = handlingData(response);
     if (requestStatus == RequestStatus.success) {
@@ -58,11 +59,23 @@ class HomePageControllerImp extends HomePageController {
       "selectedCat": selectedCat
     });
   }
-  
+
   @override
   goToNotifications() {
     Get.toNamed(AppRoutes.notifications);
   }
-  
-  
+
+  @override
+  void onClose() {
+    searchText.dispose();
+    super.onClose();
+  }
+
+  @override
+  refreshPage() async {
+    categories.clear();
+    offers.clear();
+    products.clear();
+    await getData();
+  }
 }
