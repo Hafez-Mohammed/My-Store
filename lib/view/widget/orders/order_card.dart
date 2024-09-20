@@ -41,6 +41,9 @@ class OrderCard extends GetView<OrdersController> {
                     title: "Delivery Cost", body: "${order.deliveryCost} \$")
                 : Center(),
             OrderCardText(title: "Status", body: "${order.status}"),
+            OrderCardText(
+                title: "Payment Status",
+                body: controller.getPaymentStatus(order.paymentStatus)),
             Divider(
               color: Colors.blue[200],
             ),
@@ -49,14 +52,17 @@ class OrderCard extends GetView<OrdersController> {
               children: [
                 Row(
                   children: [
-                    Text("Total Price : ",style: Theme.of(context)
+                    Text(
+                      "Total Price : ",
+                      style: Theme.of(context)
                           .textTheme
                           .bodyLarge!
-                          .copyWith(fontWeight: FontWeight.bold),),
-                Text(
-                  "${order.totalPrice} \$",
-                  style: const TextStyle(color: Colors.red, fontSize: 16),
-                ),
+                          .copyWith(fontWeight: FontWeight.bold),
+                    ),
+                    Text(
+                      "${order.totalPrice} \$",
+                      style: const TextStyle(color: Colors.red, fontSize: 16),
+                    ),
                   ],
                 ),
                 SizedBox(

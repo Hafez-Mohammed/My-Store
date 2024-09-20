@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 alertAppExit(){
   Get.defaultDialog(
     title: "Warning",
+    titleStyle: TextStyle(color: Colors.red),
     middleText: "Do you want to exit app?",
     textConfirm: "Yes",
     buttonColor: Colors.blue,

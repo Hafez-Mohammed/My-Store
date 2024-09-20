@@ -10,6 +10,7 @@ class OrderModel {
   double? price;
   double? totalPrice;
   String? status;
+  int? paymentStatus;
   String? date;
   String? city;
   String? street;
@@ -28,6 +29,7 @@ class OrderModel {
       this.price,
       this.totalPrice,
       this.status,
+      this.paymentStatus,
       this.date,
       this.city,
       this.street,
@@ -46,6 +48,7 @@ class OrderModel {
     price = double.parse("${json['price']}");
     totalPrice = double.parse("${json['total_price']}");
     status = json['status'];
+    paymentStatus = json['payment_status'];
     date = json['date'];
     city = json['city'];
     street = json['street'];
@@ -65,6 +68,7 @@ class OrderModel {
     data['price'] = price.toString();
     data['total_price'] = totalPrice.toString();
     data['status'] = status.toString();
+    data['payment_status'] = paymentStatus.toString();
     data['date'] = date.toString();
     data['city'] = this.city.toString();
     data['street'] = this.street.toString();

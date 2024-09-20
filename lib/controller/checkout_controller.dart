@@ -1,5 +1,4 @@
 import 'package:get/get.dart';
-import 'package:my_store/controller/cart_controller.dart';
 import 'package:my_store/controller/home_screen_controller.dart';
 import 'package:my_store/core/classes/request_status.dart';
 import 'package:my_store/core/functions/handling_data.dart';

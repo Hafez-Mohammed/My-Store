@@ -55,6 +55,9 @@ class OrdersController extends GetxController {
       }
       orders.addAll(data.map((e) => OrderModel.fromJson(e)));
     }
+    if (refreshRequestStatus == RequestStatus.failure) {
+      hasMoreData = false;
+    }
     update();
   }
 
@@ -90,11 +93,20 @@ class OrdersController extends GetxController {
     }
   }
 
+  String getPaymentStatus(int? value) {
+    if (value == 0) {
+      return "Not paid";
+    } else {
+      return "Paid";
+    }
+  }
+
   @override
   void onInit() {
     initialData();
     super.onInit();
   }
+
   @override
   void onClose() {
     scrollController!.dispose();
