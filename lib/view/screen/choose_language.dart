@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:my_store/core/constants/app_routes.dart';
 import 'package:my_store/core/localization/locale_controller.dart';
@@ -16,17 +17,15 @@ class ChooseLanguage extends GetView<LocaleController> {
           Center(
             child: Text(
               "1".tr,
-              style: const TextStyle(
-                  fontSize: 18,
+              style:  TextStyle(
+                  fontSize: 18.sp,
                   fontWeight: FontWeight.bold,
                   color: Colors.black),
             ),
           ),
-          const SizedBox(
-            height: 30,
-          ),
+          30.verticalSpace,
           SizedBox(
-            width: 150,
+            width: 150.w,
             child: LanguageButton(
               text: "2".tr,
               onPressed: () {
@@ -39,7 +38,7 @@ class ChooseLanguage extends GetView<LocaleController> {
             height: 5,
           ),
           SizedBox(
-            width: 150,
+            width: 150.w,
             child: LanguageButton(
               text: "3".tr,
               onPressed: () {

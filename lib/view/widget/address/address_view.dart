@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:my_store/controller/address/addresses_controller.dart';
 import 'package:my_store/core/constants/app_colors.dart';
@@ -12,12 +13,12 @@ class AddressView extends GetView<AddressesControllerImp> {
   Widget build(BuildContext context) {
     return ListTile(
         title: Padding(
-          padding: const EdgeInsets.only(bottom: 10),
+          padding: EdgeInsets.only(bottom: 10.h),
           child: Text(model.name!),
         ),
-        titleTextStyle: const TextStyle(
+        titleTextStyle: TextStyle(
           color: Colors.green,
-          fontSize: 24,
+          fontSize: 24.sp,
         ),
         isThreeLine: true,
         subtitle: Column(
@@ -26,22 +27,21 @@ class AddressView extends GetView<AddressesControllerImp> {
           children: [
             Text(
               "City       : ${model.city}",
-              style:
-                  const TextStyle(fontSize: 14, fontWeight: FontWeight.normal),
+              style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.normal),
             ),
             Text("Street  : ${model.street}",
-                style: const TextStyle(
-                    fontSize: 14, fontWeight: FontWeight.normal)),
+                style:
+                    TextStyle(fontSize: 14.sp, fontWeight: FontWeight.normal)),
             Text("Details : ${model.details}",
-                style: const TextStyle(
-                    fontSize: 14, fontWeight: FontWeight.normal))
+                style:
+                    TextStyle(fontSize: 14.sp, fontWeight: FontWeight.normal))
           ],
         ),
         trailing: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
             IconButton(
-                iconSize: 27,
+                iconSize: 27.r,
                 color: AppColors.homeIconGreyColor,
                 onPressed: () {
                   controller.toEditAddress(model.id!, model.name!, model.city!,
@@ -49,7 +49,7 @@ class AddressView extends GetView<AddressesControllerImp> {
                 },
                 icon: const Icon(Icons.edit_location_alt_outlined)),
             IconButton(
-                iconSize: 27,
+                iconSize: 27.r,
                 color: AppColors.homeIconGreyColor,
                 onPressed: () {
                   controller.deleteAddress(model.id!);

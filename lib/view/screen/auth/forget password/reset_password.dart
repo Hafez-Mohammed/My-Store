@@ -1,6 +1,5 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:my_store/controller/auth/forget%20password/reset_password_controller.dart';
@@ -21,7 +20,9 @@ class ResetPassword extends StatelessWidget {
     Get.put(ResetPasswordController());
     LoginController loginController = Get.find();
     return Scaffold(
-        appBar: AppBar(),
+        appBar: AppBar(
+          forceMaterialTransparency: true,
+        ),
         body: GetBuilder<ResetPasswordController>(
           builder: (controller) {
             return controller.requestStatus == RequestStatus.loading
@@ -30,8 +31,8 @@ class ResetPassword extends StatelessWidget {
                         width: 200, height: 200))
                 : SingleChildScrollView(
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 30, vertical: 20),
+                      padding: EdgeInsets.symmetric(
+                          horizontal: 30.w, vertical: 20.h),
                       child: Form(
                         key: controller.formKey,
                         child: Column(
@@ -55,7 +56,7 @@ class ResetPassword extends StatelessWidget {
                               icon: Icons.lock_outline_rounded,
                               focusNode: controller.passwordFocusNode!,
                             ),
-                            SizedBox(height: 20),
+                            20.verticalSpace,
                             CustomTextFormFiled(
                               validator: (value) {
                                 return inputValidate(value, "confirm password",
@@ -70,7 +71,7 @@ class ResetPassword extends StatelessWidget {
                               icon: Icons.lock_outline_rounded,
                               focusNode: controller.confpasswordFocusNode!,
                             ),
-                            SizedBox(height: 40),
+                            40.verticalSpace,
                             SignButton(
                               text: "37".tr,
                               onPressed: () {

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:my_store/controller/orders/order_details_controller.dart';
 import 'package:my_store/core/classes/handling_data_view.dart';
@@ -23,17 +24,18 @@ class OrderDetails extends StatelessWidget {
             'Order Details',
             style: Theme.of(context).textTheme.displayLarge,
           ),
+          centerTitle: true,
         ),
         body: GetBuilder<OrderDetailsController>(
           builder: (controller) => HandlingDataView(
             requestStatus: controller.requestStatus,
             widget: Padding(
-              padding: const EdgeInsets.all(30),
+              padding: const EdgeInsets.only(left: 20, right: 20, top: 30).r,
               child: Column(
                 children: [
                   Table(
                     defaultVerticalAlignment: TableCellVerticalAlignment.middle,
-                    columnWidths: const {0: FixedColumnWidth(120)},
+                    columnWidths: {0: FixedColumnWidth(120.w)},
                     children: [
                       // name of column
                       TableRow(children: [
@@ -43,91 +45,109 @@ class OrderDetails extends StatelessWidget {
                         if (controller.orderModel.status == "delivered")
                           const Center()
                       ]),
+                      // order products rows
                       ...List.generate(
                           controller.orderProducts.length,
                           (index) => TableRow(children: [
-                                OrderCellText(
-                                    text: translateDatabase(
-                                        controller.orderProducts[index].nameAr!,
-                                        controller.orderProducts[index].name!)),
-                                OrderCellText(
-                                    text:
-                                        "${controller.orderProducts[index].quantity!}"),
-                                OrderCellText(
-                                    text:
-                                        "${controller.orderProducts[index].totalPrice!}"),
+                                Padding(
+                                  padding: EdgeInsets.symmetric(vertical: 5.h),
+                                  child: OrderCellText(
+                                      text: translateDatabase(
+                                          controller
+                                              .orderProducts[index].nameAr!,
+                                          controller
+                                              .orderProducts[index].name!)),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.symmetric(vertical: 5.h),
+                                  child: OrderCellText(
+                                      text:
+                                          "${controller.orderProducts[index].quantity!}"),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.symmetric(vertical: 5.h),
+                                  child: OrderCellText(
+                                      text:
+                                          "${controller.orderProducts[index].totalPrice!}"),
+                                ),
                                 if (controller.orderModel.status == "delivered")
-                                  CustomAppButton(
-                                    text: "Rate",
-                                    onPressed: () {
-                                      controller.resetRate();
-                                      Get.defaultDialog(
-                                        title: "Rating",
-                                        content: GetBuilder<
-                                                OrderDetailsController>(
-                                            builder: (controller) => controller
-                                                        .requestStatus2 ==
-                                                    RequestStatus.loading
-                                                ? const CircularProgressIndicator(
-                                                    color: AppColors
-                                                        .onboardingMainColor)
-                                                : Row(
-                                                    children: [
-                                                      ...List.generate(
-                                                          5,
-                                                          (i) => IconButton(
-                                                                onPressed: () {
-                                                                  controller
-                                                                      .changeRate(
-                                                                          i);
-                                                                },
-                                                                icon:
-                                                                    TweenAnimationBuilder(
-                                                                  tween: ColorTween(
-                                                                      begin: Colors
-                                                                          .grey,
-                                                                      end: i <=
-                                                                              controller.rate -
-                                                                                  1
-                                                                          ? Colors
-                                                                              .yellow
-                                                                          : Colors
-                                                                              .grey),
-                                                                  duration: const Duration(
-                                                                      milliseconds:
-                                                                          600),
-                                                                  curve: Curves
-                                                                      .bounceIn,
-                                                                  builder: (context,
-                                                                          value,
-                                                                          child) =>
-                                                                      Icon(
-                                                                          Icons
-                                                                              .star,
-                                                                          color:
-                                                                              value),
-                                                                ),
-                                                                iconSize: 25,
-                                                              )),
-                                                    ],
-                                                  )),
-                                        onCancel: () {},
-                                        buttonColor:
-                                            AppColors.onboardingMainColor,
-                                        onConfirm: () {
-                                          controller.ratingProduct(
-                                              controller.orderProducts[index]
-                                                  .productId!,
-                                              controller.rate);
-                                        },
-                                      );
-                                    },
+                                  Padding(
+                                    padding:
+                                        EdgeInsets.symmetric(vertical: 5.h),
+                                    child: CustomAppButton(
+                                      text: "Rate",
+                                      onPressed: () {
+                                        // product rating process
+                                        controller.resetRate();
+                                        Get.defaultDialog(
+                                          title: "Rating",
+                                          content: GetBuilder<
+                                                  OrderDetailsController>(
+                                              builder: (controller) => controller
+                                                          .requestStatus2 ==
+                                                      RequestStatus.loading
+                                                  ? const CircularProgressIndicator(
+                                                      color: AppColors
+                                                          .onboardingMainColor)
+                                                  : Row(
+                                                      children: [
+                                                        ...List.generate(
+                                                            5,
+                                                            (i) => IconButton(
+                                                                  onPressed:
+                                                                      () {
+                                                                    controller
+                                                                        .changeRate(
+                                                                            i);
+                                                                  },
+                                                                  icon:
+                                                                      TweenAnimationBuilder(
+                                                                    tween: ColorTween(
+                                                                        begin: Colors
+                                                                            .grey,
+                                                                        end: i <=
+                                                                                controller.rate - 1
+                                                                            ? Colors.yellow
+                                                                            : Colors.grey),
+                                                                    duration: const Duration(
+                                                                        milliseconds:
+                                                                            600),
+                                                                    curve: Curves
+                                                                        .bounceIn,
+                                                                    builder: (context,
+                                                                            value,
+                                                                            child) =>
+                                                                        Icon(
+                                                                            Icons
+                                                                                .star,
+                                                                            color:
+                                                                                value),
+                                                                  ),
+                                                                  iconSize:
+                                                                      25.r,
+                                                                )),
+                                                      ],
+                                                    )),
+                                          onCancel: () {},
+                                          buttonColor:
+                                              AppColors.onboardingMainColor,
+                                          onConfirm: () {
+                                            controller.ratingProduct(
+                                                controller.orderProducts[index]
+                                                    .productId!,
+                                                controller.rate);
+                                          },
+                                        );
+                                        // end product rating
+                                      },
+                                    ),
                                   )
                               ]))
                     ],
                   ),
+                  // order price details
                   Padding(
-                      padding: const EdgeInsets.only(top: 30, bottom: 10),
+                      padding: EdgeInsets.only(top: 30.h, bottom: 10.h),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -156,7 +176,7 @@ class OrderDetails extends StatelessWidget {
                     ],
                   ),
                   Padding(
-                      padding: const EdgeInsets.only(top: 10, bottom: 20),
+                      padding: EdgeInsets.only(top: 10.h, bottom: 20.h),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -166,6 +186,8 @@ class OrderDetails extends StatelessWidget {
                         ],
                       )),
                   const Divider(),
+
+                  // if user has ordered with delivery option and has selected address show Delivery Address of order
                   controller.orderModel.receivingType == 1
                       ? ListTile(
                           title: Text("Delivery Address",
@@ -180,19 +202,21 @@ class OrderDetails extends StatelessWidget {
                                 .bodyMedium!
                                 .copyWith(
                                     fontWeight: FontWeight.normal,
-                                    fontSize: 14),
+                                    fontSize: 14.sp),
                           ),
-                          leading: const Icon(
+                          leading: Icon(
                             Icons.location_on_outlined,
                             color: AppColors.homeIconGreyColor,
-                            size: 30,
+                            size: 30.r,
                           ),
                         )
                       : const Center(),
+
+                  // if user selected pay with card when he had ordered and does not pay yet show checkout button to continue card payment
                   if (controller.orderModel.paymentMethod == 1 &&
                       controller.orderModel.paymentStatus == 0)
                     CustomAppButton(
-                      text: "Checkout with credit card",
+                      text: "Card Checkout",
                       onPressed: () {
                         controller.cardCheckout();
                       },

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:my_store/controller/address/add_address_controller.dart';
@@ -26,13 +27,13 @@ class AddAddress extends StatelessWidget {
                           width: 200, height: 200))
                   : ListView(
                       children: [
-                        const Padding(
-                          padding: EdgeInsets.all(10),
+                        Padding(
+                          padding: const EdgeInsets.all(10).r,
                           child: Icon(
                             Icons.location_on_rounded,
-                            size: 50,
+                            size: 50.r,
                             color: Colors.pinkAccent,
-                            shadows: [
+                            shadows: const [
                               Shadow(
                                   blurRadius: 2,
                                   color: Colors.grey,
@@ -41,8 +42,8 @@ class AddAddress extends StatelessWidget {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 10, vertical: 20),
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 10.h, vertical: 20.h),
                           child: Form(
                               key: controller.formKey,
                               child: Column(
@@ -92,9 +93,7 @@ class AddAddress extends StatelessWidget {
                                           value, "normal text", 4, 50, null);
                                     },
                                   ),
-                                  const SizedBox(
-                                    height: 20,
-                                  ),
+                                  30.verticalSpace,
                                   CustomAppButton(
                                     text: "Add",
                                     onPressed: () {

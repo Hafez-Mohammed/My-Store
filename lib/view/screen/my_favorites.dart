@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:my_store/controller/my_favorites_controller.dart';
 import 'package:my_store/core/classes/handling_data_view.dart';
@@ -20,12 +21,16 @@ class MyFavorites extends StatelessWidget {
       ),
       body: GetBuilder<MyFavoritesController>(
         builder: (controller) => Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(8.0).r,
           child: HandlingDataView(
               requestStatus: controller.requestStatus,
               widget: GridView.builder(
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2, childAspectRatio: 0.6),
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount:
+                          ScreenUtil().deviceType(context) == DeviceType.mobile
+                              ? 2
+                              : 3,
+                      childAspectRatio: 0.6),
                   itemCount: controller.products.length,
                   itemBuilder: (context, index) => FavoriteProductsView(
                         productModel: controller.products[index],

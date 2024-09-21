@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_store/core/constants/app_colors.dart';
 
 class SearchTextfield extends StatelessWidget {
@@ -19,12 +20,12 @@ class SearchTextfield extends StatelessWidget {
         filled: true,
         fillColor: AppColors.homeBackgroundColor,
         hintText: hint,
-        hintStyle: const TextStyle(fontSize: 14),
+        hintStyle:  TextStyle(fontSize: 14.sp),
         prefixIcon: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5).r,
           child: IconButton(
               onPressed: onIconPressed,
-              iconSize: 30,
+              iconSize: 30.r,
               icon: const Icon(Icons.search_outlined)),
         ),
         border: OutlineInputBorder(

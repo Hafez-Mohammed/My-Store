@@ -1,5 +1,5 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:my_store/controller/favorite_controller.dart';
 import 'package:my_store/controller/product_details_controller.dart';
@@ -23,24 +23,24 @@ class ProductDetails extends StatelessWidget {
         children: [
           // Product image
           Container(
-              height: 180,
+              height: 180.h,
               color: AppColors.homeBackgroundColor,
-              child: ImageStack()),
+              child: const ImageStack()),
 
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
+            padding: EdgeInsets.symmetric(horizontal: 20.w),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 // product name
                 Padding(
-                  padding: const EdgeInsets.only(top: 10, bottom: 10),
+                  padding: const EdgeInsets.only(top: 10, bottom: 10).h,
                   child: Text(
                     controller.productModel.name!,
                     style: Theme.of(context)
                         .textTheme
                         .displayLarge!
-                        .copyWith(color: Colors.black, fontSize: 22),
+                        .copyWith(color: Colors.black, fontSize: 22.sp),
                   ),
                 ),
 
@@ -50,10 +50,10 @@ class ProductDetails extends StatelessWidget {
                   style: Theme.of(context)
                       .textTheme
                       .bodyMedium!
-                      .copyWith(fontWeight: FontWeight.normal, height: 1.3),
+                      .copyWith(fontWeight: FontWeight.normal, height: 1.3.h),
                 ),
                 Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 5),
+                  padding: EdgeInsets.symmetric(vertical: 5.h),
                   child: RatingComponent(
                     reviewers: controller.productModel.reviewers,
                     rate: controller.productModel.rate,
@@ -62,7 +62,7 @@ class ProductDetails extends StatelessWidget {
 
                 // Product price
                 Padding(
-                    padding: const EdgeInsets.only(left: 10),
+                    padding: EdgeInsets.only(left: 10.w),
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
@@ -74,13 +74,14 @@ class ProductDetails extends StatelessWidget {
                                 .displayLarge!
                                 .copyWith(
                                     color: Colors.black,
-                                    fontSize: 24,
+                                    fontSize: 24.sp,
                                     fontWeight: FontWeight.normal),
                           ),
                         ),
                         GetBuilder<FavoriteController>(
                           builder: (favController) => IconButton(
                               onPressed: () {
+                                // when user tap on favorite switch state between favorite and not favorite
                                 if (favController.favorites[
                                         '${controller.productModel.id}'] ==
                                     1) {
@@ -92,23 +93,23 @@ class ProductDetails extends StatelessWidget {
                                 }
                               },
                               color: Colors.red,
-                              iconSize: 30,
-                              icon: Icon(favController.favorites[
-                                          '${controller.productModel.id}'] ==
-                                      1
-                                  ? Icons.favorite
-                                  : Icons.favorite_border_outlined)),
+                              iconSize: 30.r,
+                              icon: Icon(
+                                  // check if product exists in user favorites list to show outlined favorite icon or colored icon
+                                  favController.favorites[
+                                              '${controller.productModel.id}'] ==
+                                          1
+                                      ? Icons.favorite
+                                      : Icons.favorite_border_outlined)),
                         )
                       ],
                     )),
 
-                Divider(),
-                ColorsComponent(),
-                SizeComponent(),
-                QuantityComponent(),
-                SizedBox(
-                  height: 5,
-                ),
+                const Divider(),
+                const ColorsComponent(),
+                const SizeComponent(),
+                const QuantityComponent(),
+                5.verticalSpace,
                 Center(
                     child: CustomButton(
                   text: "Add to Cart",
@@ -116,6 +117,7 @@ class ProductDetails extends StatelessWidget {
                     controller.addToCart();
                   },
                 )),
+                10.verticalSpace,
               ],
             ),
           )

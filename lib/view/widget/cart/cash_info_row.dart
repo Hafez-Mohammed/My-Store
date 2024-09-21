@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:my_store/controller/cart_controller.dart';
 
@@ -12,7 +13,7 @@ class CashInfoRow extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 10),
+            padding: EdgeInsets.symmetric(vertical: 10.h),
             child: Row(
               children: [
                 Text(
@@ -22,10 +23,10 @@ class CashInfoRow extends StatelessWidget {
                       .bodyLarge!
                       .copyWith(color: Colors.grey),
                 ),
-                SizedBox(width: 10),
+                10.horizontalSpace,
                 Text(
                   "${controller.subTotal}\$",
-                  style: TextStyle(color: Colors.black, fontSize: 16),
+                  style: TextStyle(color: Colors.black, fontSize: 16.sp),
                 ),
               ],
             ),
@@ -39,9 +40,9 @@ class CashInfoRow extends StatelessWidget {
                     .bodyLarge!
                     .copyWith(color: Colors.grey),
               ),
-              SizedBox(width: 10),
+              10.horizontalSpace,
               Text("${controller.discount} %",
-                  style: TextStyle(color: Colors.black, fontSize: 16)),
+                  style: TextStyle(color: Colors.black, fontSize: 16.sp)),
             ],
           ),
         ],

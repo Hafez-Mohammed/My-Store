@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_carousel_widget/flutter_carousel_widget.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:my_store/controller/home_page_controller.dart';
 import 'package:my_store/core/constants/api_links.dart';
@@ -15,7 +16,7 @@ class HomeOffersList extends GetView<HomePageControllerImp> {
   Widget build(BuildContext context) {
     return FlutterCarousel(
         options: CarouselOptions(
-            height: 180,
+            height: 180.h,
             showIndicator: false,
             autoPlay: true,
             floatingIndicator: false,
@@ -40,16 +41,16 @@ class OfferCard extends StatelessWidget {
         children: [
           Container(
             padding: const EdgeInsets.only(top: 20),
-            width: 100,
-            height: 180,
+            width: 100.w,
+            height: 180.h,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
                   translateDatabase(offerModel.titleAr, offerModel.title),
                   textAlign: TextAlign.center,
-                  style: const TextStyle(
-                      fontSize: 18,
+                  style: TextStyle(
+                      fontSize: 18.sp,
                       fontWeight: FontWeight.bold,
                       color: Colors.black),
                 ),
@@ -58,23 +59,21 @@ class OfferCard extends StatelessWidget {
                   textAlign: TextAlign.start,
                   overflow: TextOverflow.ellipsis,
                   maxLines: 3,
-                  style: const TextStyle(fontSize: 12),
+                  style: TextStyle(fontSize: 12.sp),
                 ),
-                const SizedBox(
-                  height: 5,
-                ),
+                5.verticalSpace,
                 SizedBox(
-                  height: 30,
+                  height: 30.h,
                   child: ElevatedButton(
                     onPressed: () {},
                     style: ButtonStyle(
                         backgroundColor: MaterialStateColor.resolveWith(
                             (states) => AppColors.onboardingMainColor),
                         shape: MaterialStatePropertyAll(RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(5)))),
+                            borderRadius: BorderRadius.circular(5).r))),
                     child: Text(
                       "66".tr,
-                      style: const TextStyle(fontSize: 11, color: Colors.white),
+                      style: TextStyle(fontSize: 11.sp, color: Colors.white),
                     ),
                   ),
                 )

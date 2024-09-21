@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_store/core/constants/app_colors.dart';
 
 class CashOutButton extends StatelessWidget {
@@ -10,8 +11,8 @@ class CashOutButton extends StatelessWidget {
     return MaterialButton(
       onPressed: onPressed,
       color: AppColors.onboardingMainColor,
-      minWidth: 150,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+      minWidth: 150.w,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15).r),
       child: const Text(
         "Check Out",
         style: TextStyle(color: Colors.white),

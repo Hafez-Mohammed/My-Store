@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:my_store/controller/onboarding_controller.dart';
 import 'package:my_store/core/constants/app_colors.dart';
@@ -19,19 +20,16 @@ class CustomSlider extends GetView<OnboardingControllerImp> {
         children: [
           // image of page
           Container(
-              margin: const EdgeInsets.only(top: 100),
-              width: double.infinity,
-              height: 230,
+              margin:  EdgeInsets.only(top: 100.h),
+              height: 230.h,
               child: Image.asset(onboardingList[index].image!)),
-          const SizedBox(
-            height: 30,
-          ),
+          30.verticalSpace,
           // title
           Text(
             onboardingList[index].title!,
-            style: const TextStyle(
+            style:  TextStyle(
               color: AppColors.onboardingMainColor,
-              fontSize: 20,
+              fontSize: 20.sp,
               fontWeight: FontWeight.bold),
           ),
           const SizedBox(
@@ -41,10 +39,10 @@ class CustomSlider extends GetView<OnboardingControllerImp> {
           Text(
             onboardingList[index].body!,
             textAlign: TextAlign.center,
-            style: const TextStyle(
+            style:  TextStyle(
               height: 1.2,
               color: AppColors.onboardingBodyColor,
-              fontSize: 16,
+              fontSize: 16.sp,
               fontWeight: FontWeight.bold)
           ),
         ],

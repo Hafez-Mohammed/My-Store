@@ -1,9 +1,9 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:my_store/controller/settings_controller.dart';
 import 'package:my_store/core/classes/handling_data_view.dart';
+import 'package:my_store/core/constants/app_colors.dart';
 import 'package:my_store/view/widget/settings/logout_button.dart';
 import 'package:my_store/view/widget/settings/notification_card.dart';
 import 'package:my_store/view/widget/settings/person_stack.dart';
@@ -20,10 +20,8 @@ class Settings extends StatelessWidget {
           requestStatus: controller.requestStatus2!,
           widget: ListView(
             children: [
-              PersonStack(),
-              SizedBox(
-                height: 80,
-              ),
+              const PersonStack(),
+              80.verticalSpace,
               NotificationCard(
                 onSwitchChanged: (value) {
                   controller.switchNotificationStatus();
@@ -36,32 +34,27 @@ class Settings extends StatelessWidget {
                   controller.goToAddresses();
                 },
               ),
-              // SettingCard(
-              //   text: "Language",
-              //   icon: Icons.language_outlined,
-              //   onTap: () {
 
-              //   },
-              // ),
+              // change language card
               Card(
                 child: PopupMenuButton(
                   child: ListTile(
                     leading: Icon(
                       Icons.language_outlined,
-                      size: 25,
-                      color: Colors.orange[300],
+                      size: 25.r,
+                      color: AppColors.settingsIconColor,
                     ),
-                    title: Text("Language"),
+                    title: const Text("Language"),
                   ),
                   itemBuilder: (context) => [
                     PopupMenuItem(
-                      child: Text("Arabic"),
+                      child: const Text("Arabic"),
                       onTap: () {
                         controller.setLangArabic();
                       },
                     ),
                     PopupMenuItem(
-                      child: Text("English"),
+                      child: const Text("English"),
                       onTap: () {
                         controller.setLangEnglish();
                       },
@@ -69,6 +62,7 @@ class Settings extends StatelessWidget {
                   ],
                 ),
               ),
+
               SettingCard(
                 text: "About us",
                 icon: Icons.info_outline,
@@ -81,9 +75,7 @@ class Settings extends StatelessWidget {
                   controller.makePhoneCall();
                 },
               ),
-              SizedBox(
-                height: 20,
-              ),
+              20.verticalSpace,
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [

@@ -1,6 +1,5 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:my_store/controller/auth/login_controller.dart';
@@ -20,29 +19,29 @@ class SignUp extends StatelessWidget {
   Widget build(BuildContext context) {
     Get.put(SignUpController());
     LoginController loginController = Get.find();
-    return Scaffold(
-        appBar: AppBar(),
-        body: GetBuilder<SignUpController>(
-          builder: (controller) {
-            return controller.requestStatus == RequestStatus.loading
-                ? Center(
-                    child: Lottie.asset(AppImageAssets.loadingLottie,
-                        width: 200, height: 200))
-                : Padding(
-                    padding: const EdgeInsets.symmetric(
-                        vertical: 10, horizontal: 30),
-                    child: SingleChildScrollView(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
+    return Scaffold(body: SafeArea(
+      child: GetBuilder<SignUpController>(
+        builder: (controller) {
+          return controller.requestStatus == RequestStatus.loading
+              ? Center(
+                  child: Lottie.asset(AppImageAssets.loadingLottie,
+                      width: 200, height: 200))
+              : Padding(
+                  padding: const EdgeInsets.all(30).r,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      // the title
+                      AuthTitle(text: '22'.tr),
+                      // the subtitle
+                      Padding(
+                        padding: EdgeInsets.only(top: 10.h, bottom: 30.h),
+                        child: AuthSubtitle(text: '23'.tr),
+                      ),
+                      // the form of user information
+                      Expanded(
+                          child: ListView(
                         children: [
-                          // the title
-                          AuthTitle(text: '22'.tr),
-                          // the subtitle
-                          Padding(
-                            padding: const EdgeInsets.only(top: 10, bottom: 30),
-                            child: AuthSubtitle(text: '23'.tr),
-                          ),
-                          // the form of user information
                           Form(
                               key: controller.formKey,
                               child: Column(
@@ -58,9 +57,7 @@ class SignUp extends StatelessWidget {
                                     icon: Icons.person_outline_sharp,
                                     focusNode: controller.nameFocusNode!,
                                   ),
-                                  SizedBox(
-                                    height: 20,
-                                  ),
+                                  20.verticalSpace,
                                   CustomTextFormFiled(
                                     validator: (value) {
                                       return inputValidate(
@@ -72,13 +69,11 @@ class SignUp extends StatelessWidget {
                                     icon: Icons.email_outlined,
                                     focusNode: controller.emailFocusNode!,
                                   ),
-                                  SizedBox(
-                                    height: 20,
-                                  ),
+                                  20.verticalSpace,
                                   CustomTextFormFiled(
                                     validator: (value) {
                                       return inputValidate(
-                                          value, "phone", 11, 20, null);
+                                          value, "phone", 10, 20, null);
                                     },
                                     controller: controller.phone!,
                                     hint: "25".tr,
@@ -87,9 +82,7 @@ class SignUp extends StatelessWidget {
                                     focusNode: controller.phoneFocusNode!,
                                     keyboardType: TextInputType.phone,
                                   ),
-                                  SizedBox(
-                                    height: 20,
-                                  ),
+                                  20.verticalSpace,
                                   CustomTextFormFiled(
                                     validator: (value) {
                                       return inputValidate(
@@ -104,9 +97,7 @@ class SignUp extends StatelessWidget {
                                     icon: Icons.lock_outline_rounded,
                                     focusNode: controller.passwordFocusNode!,
                                   ),
-                                  SizedBox(
-                                    height: 20,
-                                  ),
+                                  20.verticalSpace,
                                   CustomTextFormFiled(
                                     validator: (value) {
                                       return inputValidate(
@@ -129,8 +120,10 @@ class SignUp extends StatelessWidget {
                                 ],
                               )),
                           // end of form
+                          20.verticalSpace,
                           Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 20),
+                            padding: EdgeInsets.symmetric(
+                                vertical: 20.h, horizontal: 80.w),
                             child: SignButton(
                               text: "27".tr,
                               onPressed: () {
@@ -146,9 +139,9 @@ class SignUp extends StatelessWidget {
                                 style: TextStyle(
                                     fontWeight: FontWeight.normal,
                                     color: Colors.black,
-                                    fontSize: 14),
+                                    fontSize: 14.sp),
                               ),
-                              SizedBox(width: 5),
+                              const SizedBox(width: 5),
                               InkWell(
                                 onTap: () {
                                   controller.toLogin();
@@ -156,16 +149,18 @@ class SignUp extends StatelessWidget {
                                 child: Text(
                                   '29'.tr,
                                   style: TextStyle(
-                                      color: Colors.blue, fontSize: 14),
+                                      color: Colors.blue, fontSize: 14.sp),
                                 ),
                               )
                             ],
                           )
                         ],
-                      ),
-                    ),
-                  );
-          },
-        ));
+                      ))
+                    ],
+                  ),
+                );
+        },
+      ),
+    ));
   }
 }

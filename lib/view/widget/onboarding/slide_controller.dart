@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:my_store/controller/onboarding_controller.dart';
 import 'package:my_store/core/constants/app_colors.dart';
@@ -17,8 +18,8 @@ class SlideController extends StatelessWidget {
                   builder: (controller) => AnimatedContainer(
                     duration: const Duration(milliseconds: 600),
                     curve: Curves.bounceInOut,
-                    width: 6,
-                    height: 6,
+                    width: 6.w,
+                    height: 6.w,
                     margin: const EdgeInsets.symmetric(horizontal: 3),
                     decoration: BoxDecoration(
                         color: (controller.currentPage == index)

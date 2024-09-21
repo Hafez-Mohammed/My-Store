@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_store/core/constants/app_colors.dart';
 
 class LanguageButton extends StatelessWidget {
@@ -14,7 +15,7 @@ class LanguageButton extends StatelessWidget {
       onPressed: onPressed,
       child: Text(
         text,
-        style: const TextStyle(color: Colors.white, fontSize: 16),
+        style:  TextStyle(color: Colors.white, fontSize: 16.sp),
       ),
     );
   }

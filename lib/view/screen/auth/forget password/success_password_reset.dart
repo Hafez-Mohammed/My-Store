@@ -1,6 +1,5 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
-
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:my_store/core/constants/app_routes.dart';
 import 'package:my_store/view/widget/auth/sign_button.dart';
@@ -14,24 +13,25 @@ class SuccessPasswordReset extends StatelessWidget {
     return Scaffold(
         body: SafeArea(
           child: Padding(
-            padding: const EdgeInsets.all(20),
+            padding: EdgeInsets.all(20.r),
             child: Column(
               children: [
+                20.verticalSpace,
                 AuthTitle(text: "38".tr),
                 Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 20),
-                  child: Icon(Icons.check_circle_outline_outlined,size: 150,color: Colors.green,),
+                  padding:  EdgeInsets.symmetric(vertical: 20.h),
+                  child: Icon(Icons.check_circle_outline_outlined,size: 150.r,color: Colors.green,),
                 ),
                 Text(
               "39".tr,
               style: TextStyle(
-                  color: Colors.blue, fontSize: 16, fontWeight: FontWeight.bold),
+                  color: Colors.blue, fontSize: 16.sp, fontWeight: FontWeight.bold),
             ),
-            Spacer(),
+            const Spacer(),
             Padding(
-              padding: const EdgeInsets.only(bottom: 20),
+              padding: EdgeInsets.only(bottom: 20.h),
               child: SizedBox(
-                width: double.infinity,
+                width: Get.width,
                 child: SignButton(
                   text: "40".tr,
                   onPressed: () {

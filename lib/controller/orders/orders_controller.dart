@@ -17,7 +17,7 @@ class OrdersController extends GetxController {
   ScrollController? scrollController;
   int limit = 4;
   int page = 1;
-  bool hasMoreData = true;
+  bool hasMoreData = false;
 
   initialData() {
     scrollController = ScrollController();
@@ -54,6 +54,7 @@ class OrdersController extends GetxController {
         hasMoreData = false;
       }
       orders.addAll(data.map((e) => OrderModel.fromJson(e)));
+      hasMoreData = true;
     }
     if (refreshRequestStatus == RequestStatus.failure) {
       hasMoreData = false;

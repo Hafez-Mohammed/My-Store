@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:my_store/controller/home_page_controller.dart';
 import 'package:my_store/core/constants/api_links.dart';
@@ -17,8 +18,10 @@ class HomeFilterdProducts extends GetView<HomePageControllerImp> {
       physics: const NeverScrollableScrollPhysics(),
       shrinkWrap: true,
       itemCount: controller.products.length,
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          childAspectRatio: 0.9, crossAxisCount: 2),
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          childAspectRatio: 0.9,
+          crossAxisCount:
+              ScreenUtil().deviceType(context) == DeviceType.mobile ? 2 : 3),
       itemBuilder: (context, index) => Product(
           productModel: ProductModel.fromJson(controller.products[index])),
     );
@@ -45,15 +48,15 @@ class Product extends StatelessWidget {
                 children: [
                   CachedNetworkImage(
                     imageUrl: "${ApiLinks.productsImage}/${productModel.image}",
-                    width: 140,
-                    height: 120,
+                    width: 140.w,
+                    height: 120.h,
                   ),
                   Positioned(
                       top: 5,
                       left: 5,
                       child: Text(
                         "${productModel.discount} %",
-                        style: const TextStyle(color: Colors.red, fontSize: 14),
+                        style:  TextStyle(color: Colors.red, fontSize: 14.sp),
                       ))
                 ],
               ),
@@ -61,14 +64,14 @@ class Product extends StatelessWidget {
             Text(
               translateDatabase(productModel.nameAr, productModel.name),
               textAlign: TextAlign.center,
-              style: const TextStyle(
-                  fontSize: 15,
+              style:  TextStyle(
+                  fontSize: 15.sp,
                   fontWeight: FontWeight.normal,
                   color: Colors.black),
             ),
             Text(
               "${productModel.disPrice!.toPrecision(1)} \$",
-              style: const TextStyle(fontSize: 14),
+              style:  TextStyle(fontSize: 14.sp),
             ),
           ],
         ),

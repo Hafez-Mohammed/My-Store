@@ -1,6 +1,5 @@
-// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
-
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:my_store/controller/cart_controller.dart';
@@ -26,16 +25,14 @@ class Cart extends StatelessWidget {
           children: [
             Container(
                 height: 70,
-                padding: EdgeInsets.only(top: 20),
+                padding: EdgeInsets.only(top: 20.h),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Expanded(child: CartTitle()),
+                    30.horizontalSpace,
+                    const Expanded(child: CartTitle()),
                     Padding(
-                      padding: const EdgeInsets.only(right: 10),
+                      padding: EdgeInsets.only(right: 10.w),
                       child: IconButton(
                           onPressed: () {
                             Get.defaultDialog(
@@ -67,22 +64,21 @@ class Cart extends StatelessWidget {
                               },
                             );
                           },
-                          iconSize: 25,
+                          iconSize: 25.r,
                           color: AppColors.homeIconGreyColor,
-                          icon: Icon(Icons.discount)),
+                          icon: const Icon(Icons.discount)),
                     )
                   ],
                 )),
             Stack(children: [
               Container(
-                height: Get.height - 150,
-                padding: EdgeInsets.all(20),
+                height: (Get.height - 146.3).h,
                 decoration: BoxDecoration(
                     color: AppColors.homeBackgroundColor,
-                    borderRadius: BorderRadius.circular(40)),
+                    borderRadius: BorderRadius.circular(40).r),
               ),
               Container(
-                  margin: EdgeInsets.only(top: 30),
+                  margin: EdgeInsets.only(top: 30.h),
                   height: Get.height / 1.8,
                   child: controller.requestStatus == RequestStatus.loading
                       ? Center(
@@ -94,7 +90,7 @@ class Cart extends StatelessWidget {
                               itemBuilder: (context, index) => ProductCard(
                                   model: controller.products[index]),
                             )
-                          : Center(
+                          : const Center(
                               child: Text("There is not any product"),
                             )),
               Positioned(
@@ -103,21 +99,21 @@ class Cart extends StatelessWidget {
                 bottom: -20,
                 child: Column(
                   children: [
-                    CashInfoRow(),
+                    const CashInfoRow(),
                     Card(
                       color: Colors.white,
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(50)),
                       child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 20, vertical: 20),
+                        padding: EdgeInsets.symmetric(
+                            horizontal: 20.w, vertical: 20.h),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             Text(
                               "${controller.total}\$",
-                              style:
-                                  TextStyle(color: Colors.black, fontSize: 22),
+                              style: TextStyle(
+                                  color: Colors.black, fontSize: 22.sp),
                             ),
                             CashOutButton(
                               onPressed: () {

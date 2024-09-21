@@ -1,6 +1,7 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:my_store/controller/auth/login_controller.dart';
@@ -30,7 +31,7 @@ class Login extends StatelessWidget {
                     child: Lottie.asset(AppImageAssets.loadingLottie,
                         width: 200, height: 200))
                 : Padding(
-                  padding: const EdgeInsets.all(30),
+                  padding: const EdgeInsets.all(30).w,
                   child: SingleChildScrollView(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -38,13 +39,11 @@ class Login extends StatelessWidget {
                         // the image at the head of page
                         Image.asset(
                           AppImageAssets.loginImage,
-                          width: 130,
-                          height: 130,
+                          width: 130.w,
+                          height: 130.h,
                           fit: BoxFit.fill,
                         ),
-                        SizedBox(
-                          height: 7,
-                        ),
+                        7.verticalSpace,
                         // the title
                         AuthTitle(text: '11'.tr),
                         // the subtitle
@@ -68,9 +67,7 @@ class Login extends StatelessWidget {
                                   icon: Icons.person_outline_sharp,
                                   focusNode: controller.emailFocusNode!,
                                 ),
-                                SizedBox(
-                                  height: 20,
-                                ),
+                                20.verticalSpace,
                                 CustomTextFormFiled(
                                   validator: (value) {
                                     return inputValidate(
@@ -90,7 +87,7 @@ class Login extends StatelessWidget {
                         // end of form
                         Container(
                           alignment: Alignment.centerRight,
-                          margin: EdgeInsets.only(top: 10, bottom: 20),
+                          margin: const EdgeInsets.only(top: 10, bottom: 20).r,
                           child: InkWell(
                               onTap: () {
                                 controller.toForgotPassword();
@@ -98,7 +95,7 @@ class Login extends StatelessWidget {
                               child: Text(
                                 "15".tr,
                                 style: TextStyle(
-                                    fontSize: 14, color: Colors.black),
+                                    fontSize: 14.sp, color: Colors.black),
                               )),
                         ),
                         SignButton(
@@ -108,7 +105,7 @@ class Login extends StatelessWidget {
                           },
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(top: 20, bottom: 10),
+                          padding: const EdgeInsets.only(top: 20, bottom: 10).r,
                           child: Text(
                             "17".tr,
                             style: Theme.of(context)
@@ -123,27 +120,25 @@ class Login extends StatelessWidget {
                         // social sign buttons
                         Row(
                           children: [
-                            Spacer(),
+                            const Spacer(),
                             SocialSignButton(
                               text: "18".tr,
                               color: const Color.fromARGB(255, 14, 81, 137),
                               icon: Icons.facebook_outlined,
                               onPressed: () {},
                             ),
-                            SizedBox(
-                              width: 20,
-                            ),
+                            20.horizontalSpace,
                             SocialSignButton(
                               text: "19".tr,
-                              color: Color.fromARGB(255, 235, 83, 12),
+                              color: const Color.fromARGB(255, 235, 83, 12),
                               icon: Icons.g_mobiledata_rounded,
                               onPressed: () {},
                             ),
-                            Spacer(),
+                            const Spacer(),
                           ],
                         ),
                         // end social sign buttons
-                        SizedBox(height: 30),
+                        30.verticalSpace,
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -152,9 +147,9 @@ class Login extends StatelessWidget {
                               style: TextStyle(
                                   fontWeight: FontWeight.normal,
                                   color: Colors.black,
-                                  fontSize: 14),
+                                  fontSize: 14.sp),
                             ),
-                            SizedBox(width: 5),
+                            const SizedBox(width: 5),
                             InkWell(
                               onTap: () {
                                 controller.toSignUp();
@@ -162,7 +157,7 @@ class Login extends StatelessWidget {
                               child: Text(
                                 '21'.tr,
                                 style: TextStyle(
-                                    color: Colors.blue, fontSize: 14),
+                                    color: Colors.blue, fontSize: 14.sp),
                               ),
                             )
                           ],

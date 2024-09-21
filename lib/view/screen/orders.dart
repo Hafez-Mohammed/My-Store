@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:my_store/controller/orders/orders_controller.dart';
 import 'package:my_store/core/classes/handling_data_view.dart';
@@ -16,7 +17,7 @@ class Orders extends StatelessWidget {
       child: GetBuilder<OrdersController>(
         builder: (controller) => RefreshIndicator.adaptive(
           color: AppColors.onboardingMainColor,
-          onRefresh: () async{
+          onRefresh: () async {
             await controller.refreshPage();
           },
           child: HandlingDataView(
@@ -24,11 +25,10 @@ class Orders extends StatelessWidget {
               widget: Column(
                 children: [
                   Container(
-                      height: 50,
-                      padding: const EdgeInsets.only(top: 10),
+                      height: 50.h,
+                      padding: EdgeInsets.only(top: 20.h),
                       child: const OrdersTitle()),
-                  Container(
-                    height: Get.height - 130,
+                  Expanded(
                     child: ListView.separated(
                         controller: controller.scrollController,
                         separatorBuilder: (context, index) => Row(
@@ -42,23 +42,25 @@ class Orders extends StatelessWidget {
                                         ))
                               ],
                             ),
-                        padding: const EdgeInsets.all(10),
+                        padding: const EdgeInsets.all(10).r,
                         itemCount: controller.orders.length + 1,
                         itemBuilder: (context, index) => index <
                                 controller.orders.length
                             ? OrderCard(order: controller.orders[index])
                             : controller.hasMoreData
-                                ? const Center(
+                                ? Center(
                                     child: Padding(
-                                      padding: EdgeInsets.symmetric(vertical: 10),
-                                      child: CircularProgressIndicator(
+                                      padding:
+                                          EdgeInsets.symmetric(vertical: 10.h),
+                                      child: const CircularProgressIndicator(
                                         color: AppColors.onboardingMainColor,
                                       ),
                                     ),
                                   )
-                                : const Padding(
-                                    padding: EdgeInsets.symmetric(vertical: 10),
-                                    child: Text(
+                                : Padding(
+                                    padding:
+                                        EdgeInsets.symmetric(vertical: 10.h),
+                                    child: const Text(
                                       "No more orders",
                                       textAlign: TextAlign.center,
                                     ),

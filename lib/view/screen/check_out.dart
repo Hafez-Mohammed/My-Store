@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:my_store/controller/checkout_controller.dart';
 import 'package:my_store/core/classes/handling_data_view.dart';
@@ -15,7 +16,8 @@ class CheckOut extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    CheckoutControllerImp checkoutControllerImp = Get.put(CheckoutControllerImp());
+    CheckoutControllerImp checkoutControllerImp =
+        Get.put(CheckoutControllerImp());
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -35,10 +37,11 @@ class CheckOut extends StatelessWidget {
         builder: (controller) => HandlingDataView(
             requestStatus: controller.requestStatus!,
             widget: ListView(
-              padding: EdgeInsets.only(left: 10,right: 10,top: 10,bottom: 100),
+              padding: EdgeInsets.only(
+                  left: 10.w, right: 10.w, top: 10.h, bottom: 100.h),
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(top: 10, bottom: 20),
+                  padding: const EdgeInsets.only(top: 10, bottom: 20).h,
                   child: Text(
                     "Please select payment method:",
                     style: TextStyle(
@@ -53,7 +56,7 @@ class CheckOut extends StatelessWidget {
                       onTap: () {
                         controller.choosePaymentMethod("Cash");
                       },
-                      radius: 25,
+                      radius: 20.r,
                       child: PaymentContainer(
                           text: "Cash",
                           isSelected: controller.paymentMethod == "Cash"
@@ -64,7 +67,7 @@ class CheckOut extends StatelessWidget {
                       onTap: () {
                         controller.choosePaymentMethod("Credit Card");
                       },
-                      radius: 25,
+                      radius: 25.r,
                       child: PaymentContainer(
                           text: "Credit Card",
                           isSelected: controller.paymentMethod == "Credit Card"
@@ -74,7 +77,7 @@ class CheckOut extends StatelessWidget {
                   ],
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(top: 10, bottom: 20),
+                  padding: EdgeInsets.only(top: 10, bottom: 20).h,
                   child: Text(
                     "Please select receiving type:",
                     style: TextStyle(
@@ -116,7 +119,7 @@ class CheckOut extends StatelessWidget {
                         shrinkWrap: true,
                         children: [
                           Padding(
-                            padding: const EdgeInsets.only(top: 10, bottom: 20),
+                            padding: EdgeInsets.only(top: 10, bottom: 20).h,
                             child: Text(
                               "Please select delivery address:",
                               style: TextStyle(
@@ -131,7 +134,7 @@ class CheckOut extends StatelessWidget {
                                       controller.chooseAddress(
                                           controller.addresses[index]);
                                     },
-                                    borderRadius: BorderRadius.circular(10),
+                                    borderRadius: BorderRadius.circular(10).r,
                                     child: AddressCard(index: index),
                                   ))
                         ],

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:my_store/core/constants/app_colors.dart';
 
 class SettingCard extends StatelessWidget {
   final String text;
@@ -15,8 +17,8 @@ class SettingCard extends StatelessWidget {
         onTap: onTap,
         leading: Icon(
           icon,
-          size: 25,
-          color: Colors.orange[300],
+          size: 25.r,
+          color: AppColors.settingsIconColor,
         ),
       ),
     );

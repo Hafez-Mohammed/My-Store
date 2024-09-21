@@ -72,7 +72,7 @@ class AppTranslation extends Translations{
       '66' : "Shop Now",
       '67' : "Products with discount",
       '68' : "Type Product Name",
-      '69' : "Raitng:",
+      '69' : "Rating:",
       '70' : "OK"
     },
     "ar" : {

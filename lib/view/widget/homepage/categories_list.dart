@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:my_store/controller/home_page_controller.dart';
 import 'package:my_store/core/constants/api_links.dart';
@@ -18,7 +19,7 @@ class CategoriesList extends GetView<HomePageControllerImp> {
                 controller.goToProducts(controller.categories, index);
               },
               child: SizedBox(
-                width: 90,
+                width: 90.w,
                 child: Category(
                     categoryModel:
                         CategoryModel.fromJson(controller.categories[index])),
@@ -38,11 +39,11 @@ class Category extends StatelessWidget {
     return Column(
       children: [
         Container(
-          width: 80,
-          height: 80,
+          width: 80.w,
+          height: 80.w,
           decoration: BoxDecoration(
               color: const Color.fromRGBO(244, 246, 248, 1),
-              borderRadius: BorderRadius.circular(18),
+              borderRadius: BorderRadius.circular(18).r,
               border: const Border(
                   top: BorderSide(width: 0.5, color: Colors.black),
                   left: BorderSide(width: 0.5, color: Colors.black),
@@ -50,8 +51,8 @@ class Category extends StatelessWidget {
                   bottom: BorderSide(width: 3, color: Colors.black))),
           child: CachedNetworkImage(
             imageUrl: "${ApiLinks.categoriesImage}/${categoryModel.image}",
-            width: 50,
-            height: 70,
+            width: 50.w,
+            height: 70.h,
           ),
         ),
         const SizedBox(
@@ -59,8 +60,8 @@ class Category extends StatelessWidget {
         ),
         Text(
           translateDatabase(categoryModel.nameAr, categoryModel.name),
-          style: const TextStyle(
-              fontSize: 14, color: Colors.black, fontWeight: FontWeight.normal),
+          style:  TextStyle(
+              fontSize: 14.sp, color: Colors.black, fontWeight: FontWeight.normal),
         )
       ],
     );

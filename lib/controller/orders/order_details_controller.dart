@@ -73,61 +73,59 @@ class OrderDetailsController extends GetxController {
   }
 
   cardCheckout() {
-    Get.to(MaterialPageRoute(
-      builder: (BuildContext context) => PaypalCheckout(
-        sandboxMode: true,
-        clientId: "CLIENT_ID",
-        secretKey: "SECRET_KEY",
-        returnURL: "RETURN_URL",
-        cancelURL: "CANCEL_URL",
-        transactions: [
-          {
-            "amount": {
-              "total": orderModel.totalPrice,
-              "currency": "USD",
-              "details": {
-                "subtotal": orderModel.price,
-                "shipping": orderModel.deliveryCost,
-                "shipping_discount": 0
-              }
-            },
-            "description": "The payment transaction description.",
-            "item_list": {
-              "items": List.generate(
-                  orderProducts.length,
-                  (index) => {
-                        "name": orderProducts[index].name,
-                        "quantity": orderProducts[index].quantity,
-                        "price": orderProducts[index].disPrice,
-                        "currency": "USD"
-                      })
-              // shipping address is Optional
-              // "shipping_address": {
-              //   "recipient_name": "Raman Singh",
-              //   "line1": "Delhi",
-              //   "line2": "",
-              //   "city": "Delhi",
-              //   "country_code": "IN",
-              //   "postal_code": "11001",
-              //   "phone": "+00000000",
-              //   "state": "Texas"
-              // },
+    Get.to(PaypalCheckout(
+      sandboxMode: true,
+      clientId: "CLIENT_ID",
+      secretKey: "SECRET_KEY",
+      returnURL: "RETURN_URL",
+      cancelURL: "CANCEL_URL",
+      transactions: [
+        {
+          "amount": {
+            "total": orderModel.totalPrice,
+            "currency": "USD",
+            "details": {
+              "subtotal": orderModel.price,
+              "shipping": orderModel.deliveryCost,
+              "shipping_discount": 0
             }
+          },
+          "description": "The payment transaction description.",
+          "item_list": {
+            "items": List.generate(
+                orderProducts.length,
+                (index) => {
+                      "name": orderProducts[index].name,
+                      "quantity": orderProducts[index].quantity,
+                      "price": orderProducts[index].disPrice,
+                      "currency": "USD"
+                    })
+            // shipping address is Optional
+            // "shipping_address": {
+            //   "recipient_name": "Raman Singh",
+            //   "line1": "Delhi",
+            //   "line2": "",
+            //   "city": "Delhi",
+            //   "country_code": "IN",
+            //   "postal_code": "11001",
+            //   "phone": "+00000000",
+            //   "state": "Texas"
+            // },
           }
-        ],
-        note: "PAYMENT_NOTE",
-        onSuccess: (Map params) async {
-          print("onSuccess: $params");
-        },
-        onError: (error) {
-          // print("onError: $error");
-          Get.back();
-          showErorrDialog(error);
-        },
-        onCancel: () {
-          Get.back();
-        },
-      ),
+        }
+      ],
+      note: "PAYMENT_NOTE",
+      onSuccess: (Map params) async {
+        print("onSuccess: $params");
+      },
+      onError: (error) {
+        // print("onError: $error");
+        Get.back();
+        showErorrDialog(error);
+      },
+      onCancel: () {
+        Get.back();
+      },
     ));
   }
 

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:my_store/controller/onboarding_controller.dart';
 import 'package:my_store/core/constants/app_colors.dart';
@@ -9,7 +10,7 @@ class NextButton extends GetView<OnboardingControllerImp> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        height: 45,
+        height: 45.h,
         decoration: BoxDecoration(
             border: const Border(
                 right: BorderSide(color: AppColors.onboardingBodyColor),
@@ -19,7 +20,7 @@ class NextButton extends GetView<OnboardingControllerImp> {
         child: Row(
           children: [
             MaterialButton(
-              height: 45,
+              height: 45.h,
               onPressed: () {
                 controller.next();
               },
@@ -31,7 +32,7 @@ class NextButton extends GetView<OnboardingControllerImp> {
                   borderRadius: BorderRadius.circular(20)),
               child:  Text(
                 "10".tr,
-                style: const TextStyle(color: Colors.white),
+                style:  TextStyle(color: Colors.white,fontSize: 14.sp),
               ),
             ),
             const SizedBox(

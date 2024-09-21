@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SocialSignButton extends StatelessWidget {
   final String text;
@@ -17,7 +18,7 @@ class SocialSignButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 130,
+      width: 130.w,
       child: MaterialButton(
         onPressed: onPressed,
         color: color,
@@ -32,8 +33,8 @@ class SocialSignButton extends StatelessWidget {
             SizedBox(width: 5),
             Text(
               text,
-              style: const TextStyle(
-                  color: Colors.white, fontSize: 14, fontWeight: FontWeight.bold),
+              style:  TextStyle(
+                  color: Colors.white, fontSize: 14.sp, fontWeight: FontWeight.bold),
             ),
           ],
         ),

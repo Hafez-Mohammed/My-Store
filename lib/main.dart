@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:my_store/bindings/initial_bindings.dart';
 import 'package:my_store/core/constants/app_routes.dart';
@@ -15,20 +16,26 @@ void main() async {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    LocaleController localeController = Get.put(LocaleController());
-    return GetMaterialApp(
-        debugShowCheckedModeBanner: false,
-        translations: AppTranslation(),
-        locale: localeController.language,
-        theme: localeController.appTheme,
-        title: 'My Store',
-        initialBinding: InitialBindings(),
-        getPages: routes,
-        initialRoute: AppRoutes.chooseLanguage,
+    return ScreenUtilInit(
+      designSize: const Size(360, 690),
+      minTextAdapt: true,
+      splitScreenMode: false,
+      builder: (context, child) {
+        LocaleController localeController = Get.put(LocaleController());
+        return GetMaterialApp(
+          debugShowCheckedModeBanner: false,
+          translations: AppTranslation(),
+          locale: localeController.language,
+          theme: localeController.appTheme,
+          title: 'My Store',
+          initialBinding: InitialBindings(),
+          getPages: routes,
+          initialRoute: AppRoutes.chooseLanguage,
         );
+      },
+    );
   }
 }

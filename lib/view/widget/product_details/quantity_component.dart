@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:my_store/controller/product_details_controller.dart';
 import 'package:my_store/core/constants/app_colors.dart';
@@ -20,9 +21,9 @@ class QuantityComponent extends StatelessWidget {
                       .copyWith(color: Colors.black),
                 ),
                 Container(
-                  margin: const EdgeInsets.all(5),
-                  height: 40,
-                  width: 130,
+                  margin: const EdgeInsets.all(5).r,
+                  height: 40.h,
+                  width: 130.w,
                   decoration: BoxDecoration(
                       border: Border.all(width: 1.5),
                       borderRadius: BorderRadius.circular(10)),
@@ -32,9 +33,9 @@ class QuantityComponent extends StatelessWidget {
                         onPressed: () {
                           controller.increaseQuantity();
                         },
-                        icon: const Icon(
+                        icon: Icon(
                           Icons.add,
-                          size: 25,
+                          size: 25.r,
                           color: AppColors.onboardingMainColor,
                         ),
                       ),
@@ -55,7 +56,7 @@ class QuantityComponent extends StatelessWidget {
                         onPressed: () {
                           controller.decreaseQuantity();
                         },
-                        iconSize: 25,
+                        iconSize: 25.r,
                         icon: const Icon(
                           Icons.remove,
                           color: AppColors.onboardingMainColor,

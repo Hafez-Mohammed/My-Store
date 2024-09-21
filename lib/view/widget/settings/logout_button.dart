@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_store/core/constants/app_colors.dart';
 
 class LogoutButton extends StatelessWidget {
@@ -9,14 +10,14 @@ class LogoutButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialButton(
-      height: 40,
-      minWidth: 200,
+      height: 40.h,
+      minWidth: 200.w,
       color: AppColors.onboardingMainColor,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20).r),
       onPressed: onPressed,
       child: Text(
         text,
-        style: const TextStyle(color: Colors.white, fontSize: 16),
+        style: TextStyle(color: Colors.white, fontSize: 16.sp),
       ),
     );
   }

@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:my_store/controller/auth/forget%20password/forget_password_controller.dart';
@@ -19,7 +20,7 @@ class ForgetPassword extends StatelessWidget {
   Widget build(BuildContext context) {
     Get.put(ForgetPasswordController());
     return Scaffold(
-        appBar: AppBar(),
+        appBar: AppBar(forceMaterialTransparency: true,),
         body: GetBuilder<ForgetPasswordController>(
           builder: (controller) {
             return controller.requestStatus == RequestStatus.loading
@@ -28,15 +29,15 @@ class ForgetPassword extends StatelessWidget {
                         width: 200, height: 200))
                 : SingleChildScrollView(
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 30, vertical: 20),
+                      padding:  EdgeInsets.symmetric(
+                          horizontal: 30.w, vertical: 40.h),
                       child: Form(
                         key: controller.formKey,
                         child: Column(
                           children: [
                             AuthTitle(text: "30".tr),
                             Padding(
-                              padding: const EdgeInsets.symmetric(vertical: 20),
+                              padding:  EdgeInsets.symmetric(vertical: 30.h),
                               child: AuthSubtitle(text: "31".tr),
                             ),
                             CustomTextFormFiled(
@@ -50,7 +51,7 @@ class ForgetPassword extends StatelessWidget {
                               icon: Icons.email_outlined,
                               focusNode: controller.emailFocusNode!,
                             ),
-                            SizedBox(height: 30),
+                            30.verticalSpace,
                             SignButton(
                               text: "32".tr,
                               onPressed: () {

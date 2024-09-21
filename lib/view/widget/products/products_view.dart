@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:my_store/controller/favorite_controller.dart';
 import 'package:my_store/controller/products_controller.dart';
@@ -35,39 +36,41 @@ class ProductsView extends GetView<ProductsControllerImp> {
                           child: CachedNetworkImage(
                             imageUrl:
                                 "${ApiLinks.productsImage}/${productModel.image}",
-                            width: 130,
-                            height: 130,
+                            width: 130.w,
+                            height: 130.w,
                           ),
                         ),
                       ),
                       GetBuilder<FavoriteController>(
                         builder: (controller) => Positioned(
-                            right: 20,
-                            top: 20,
+                            right: 20.w,
+                            top: 20.h,
                             child: Icon(
                               controller.favorites['${productModel.id}'] == 1
                                   ? Icons.favorite
                                   : Icons.favorite_border_outlined,
                               color: Colors.red,
-                              size: 25,
+                              size: 25.r,
                             )),
                       ),
+                      // rating component
                       Positioned(
-                          left: 7,
-                          bottom: 5,
+                          left: 7.w,
+                          bottom: 5.h,
                           child: Row(
                             children: [
                               Text(
                                 "69".tr,
-                                style: TextStyle(fontSize: 14),
+                                style: TextStyle(fontSize: 14.sp),
                               ),
+                              // if product rated will show yellow stars with count matched to rate and (5 - count) grey stars
                               if (productModel.reviewers != 0)
                                 ...List.generate(
                                     productModel.rate!,
                                     (index) => Icon(
                                           Icons.star,
                                           color: Colors.yellow,
-                                          size: 20,
+                                          size: 20.r,
                                         )),
                               if (productModel.reviewers != 0)
                                 ...List.generate(
@@ -75,45 +78,48 @@ class ProductsView extends GetView<ProductsControllerImp> {
                                     (index) => Icon(
                                           Icons.star,
                                           color: Colors.grey,
-                                          size: 20,
+                                          size: 20.r,
                                         )),
+                              // if product did not rate yet will show 5 grey stars
                               if (productModel.reviewers == 0)
                                 ...List.generate(
                                     5,
                                     (index) => Icon(
                                           Icons.star,
                                           color: Colors.grey,
-                                          size: 20,
+                                          size: 20.r,
                                         )),
                             ],
                           ))
+                      // end rating component
                     ],
                   )),
             ),
             Text(
               translateDatabase(productModel.nameAr, productModel.name),
               textAlign: TextAlign.center,
-              style: const TextStyle(
-                  fontSize: 16,
+              style: TextStyle(
+                  fontSize: 16.sp,
                   fontWeight: FontWeight.bold,
                   color: Colors.black),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                // if product has a discount will show old price before discount
                 productModel.discount! > 0
                     ? Stack(
                         children: [
                           Text(
                             "${productModel.price} \$",
-                            style: const TextStyle(
-                                fontSize: 14, color: Colors.grey),
+                            style:
+                                TextStyle(fontSize: 14.sp, color: Colors.grey),
                           ),
                           Positioned(
-                              top: 8,
+                              top: 8.h,
                               child: Container(
-                                height: 0.6,
-                                width: 100,
+                                height: 0.6.h,
+                                width: 100.w,
                                 decoration: BoxDecoration(
                                     shape: BoxShape.rectangle,
                                     color: Colors.black),
@@ -121,12 +127,10 @@ class ProductsView extends GetView<ProductsControllerImp> {
                         ],
                       )
                     : SizedBox(),
-                SizedBox(
-                  width: 10,
-                ),
+                10.horizontalSpace,
                 Text(
                   "${productModel.disPrice!.toPrecision(1)} \$",
-                  style: const TextStyle(fontSize: 14, color: Colors.red),
+                  style: TextStyle(fontSize: 14.sp, color: Colors.red),
                 ),
               ],
             ),

@@ -1,5 +1,5 @@
-// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:my_store/controller/favorite_controller.dart';
 import 'package:my_store/controller/products_controller.dart';
@@ -59,11 +59,16 @@ class Products extends StatelessWidget {
                   ...List.generate(
                       controller.categories.length,
                       (index) => controller.isSearch
+                          // when user type a text in search textfield will show products matched as a result
                           ? controller.searchProducts.isNotEmpty
                               ? GridView.builder(
                                   gridDelegate:
                                       SliverGridDelegateWithFixedCrossAxisCount(
-                                          crossAxisCount: 2,
+                                          crossAxisCount: ScreenUtil()
+                                                      .deviceType(context) ==
+                                                  DeviceType.mobile
+                                              ? 2
+                                              : 3,
                                           childAspectRatio: 0.7),
                                   itemCount: controller.searchProducts.length,
                                   itemBuilder: (context, index) {
@@ -75,7 +80,7 @@ class Products extends StatelessWidget {
                                         productModel:
                                             controller.searchProducts[index]);
                                   })
-                              : Center(
+                              : const Center(
                                   child: Text(
                                     "No results",
                                     style: TextStyle(
@@ -83,11 +88,16 @@ class Products extends StatelessWidget {
                                         fontWeight: FontWeight.normal),
                                   ),
                                 )
+                          // if search textfield is empty will display products that belongs to selectd category tab
                           : controller.products.isNotEmpty
                               ? GridView.builder(
                                   gridDelegate:
                                       SliverGridDelegateWithFixedCrossAxisCount(
-                                          crossAxisCount: 2,
+                                          crossAxisCount: ScreenUtil()
+                                                      .deviceType(context) ==
+                                                  DeviceType.mobile
+                                              ? 2
+                                              : 3,
                                           childAspectRatio: 0.7),
                                   itemCount: controller.products.length,
                                   itemBuilder: (context, index) {
@@ -98,7 +108,7 @@ class Products extends StatelessWidget {
                                         productModel:
                                             controller.products[index]);
                                   })
-                              : Center(
+                              : const Center(
                                   child: Text(
                                   "There is not any product",
                                   style: TextStyle(

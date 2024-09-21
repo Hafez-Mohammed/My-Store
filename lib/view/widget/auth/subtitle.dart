@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AuthSubtitle extends StatelessWidget {
   final String text;
@@ -12,7 +13,7 @@ class AuthSubtitle extends StatelessWidget {
       style: Theme.of(context)
           .textTheme
           .bodyMedium!
-          .copyWith(fontSize: 14, fontWeight: FontWeight.normal),
+          .copyWith(fontSize: 14.sp, fontWeight: FontWeight.normal),
     );
   }
 }

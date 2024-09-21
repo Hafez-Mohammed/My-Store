@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:my_store/controller/orders/orders_controller.dart';
 import 'package:my_store/core/shared/custom_app_button.dart';
@@ -11,17 +12,17 @@ class OrderCard extends GetView<OrdersController> {
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: const EdgeInsets.symmetric(vertical: 10),
+      margin:  EdgeInsets.symmetric(vertical: 10.h),
       child: Padding(
-        padding: const EdgeInsets.all(10),
+        padding: const EdgeInsets.all(10).r,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
-              padding: const EdgeInsets.symmetric(vertical: 10),
+              padding:  EdgeInsets.symmetric(vertical: 10.h),
               child: Text(
                 "Order Number :   ${order.id}",
-                style: const TextStyle(color: Colors.black, fontSize: 20),
+                style:  TextStyle(color: Colors.black, fontSize: 20.sp),
               ),
             ),
             Divider(
@@ -39,7 +40,7 @@ class OrderCard extends GetView<OrdersController> {
             (order.receivingType == 1 && order.status != "pending")
                 ? OrderCardText(
                     title: "Delivery Cost", body: "${order.deliveryCost} \$")
-                : Center(),
+                : const Center(),
             OrderCardText(title: "Status", body: "${order.status}"),
             OrderCardText(
                 title: "Payment Status",
@@ -53,7 +54,7 @@ class OrderCard extends GetView<OrdersController> {
                 Row(
                   children: [
                     Text(
-                      "Total Price : ",
+                      "Total : ",
                       style: Theme.of(context)
                           .textTheme
                           .bodyLarge!
@@ -61,12 +62,12 @@ class OrderCard extends GetView<OrdersController> {
                     ),
                     Text(
                       "${order.totalPrice} \$",
-                      style: const TextStyle(color: Colors.red, fontSize: 16),
+                      style:  TextStyle(color: Colors.red, fontSize: 16.sp),
                     ),
                   ],
                 ),
                 SizedBox(
-                  width: 70,
+                  width: 70.w,
                   child: CustomAppButton(
                     text: "Details",
                     onPressed: () {
@@ -76,7 +77,7 @@ class OrderCard extends GetView<OrdersController> {
                 ),
                 order.status == "pending"
                     ? SizedBox(
-                        width: 70,
+                        width: 70.w,
                         child: CustomAppButton(
                           text: "Cancel",
                           onPressed: () {
@@ -84,7 +85,7 @@ class OrderCard extends GetView<OrdersController> {
                           },
                         ),
                       )
-                    : Center()
+                    : const Center()
               ],
             )
           ],
@@ -102,7 +103,7 @@ class OrderCardText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 3),
+      padding: const EdgeInsets.symmetric(vertical: 3).r,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [

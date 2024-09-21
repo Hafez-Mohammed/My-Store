@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:my_store/controller/home_screen_controller.dart';
@@ -22,19 +23,26 @@ class CustomBottomNavigationBar extends StatelessWidget {
           showUnselectedLabels: true,
           items: [
             BottomNavigationBarItem(
-                icon: const Icon(Icons.home_rounded), label: "59".tr),
+                icon: Icon(
+                  Icons.home_rounded,
+                  size: 30.r,
+                ),
+                label: "59".tr),
             BottomNavigationBarItem(
                 icon: SvgPicture.asset(
                   AppImageAssets.cart,
+                  width: 25.r,
+                  height: 25.r,
                   color: controller.currentPage == 1
                       ? AppColors.onboardingMainColor
                       : AppColors.homeIconGreyColor,
                 ),
                 label: "60".tr),
             BottomNavigationBarItem(
-                icon: const Icon(Icons.shopping_cart_outlined), label: "61".tr),
+                icon: Icon(Icons.shopping_cart_outlined, size: 30.r),
+                label: "61".tr),
             BottomNavigationBarItem(
-                icon: const Icon(Icons.settings), label: "62".tr),
+                icon: Icon(Icons.settings, size: 30.r), label: "62".tr),
           ]),
     );
   }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:my_store/controller/address/edit_address_controller.dart';
@@ -19,93 +20,91 @@ class EditAddress extends StatelessWidget {
         title: const Text('Edit address'),
       ),
       body: GetBuilder<EditAddressController>(
-        builder: (controller) =>
-            controller.requestStatus == RequestStatus.loading
-                ? Center(
-                    child: Lottie.asset(AppImageAssets.loadingLottie,
-                        width: 200, height: 200))
-                : ListView(
-                    children: [
-                      const Padding(
-                        padding: EdgeInsets.all(10),
-                        child: Icon(
-                          Icons.location_on_rounded,
-                          size: 50,
-                          color: Colors.pinkAccent,
-                          shadows: [
-                            Shadow(
-                                blurRadius: 2,
-                                color: Colors.grey,
-                                offset: Offset(1, 1))
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 10, vertical: 20),
-                        child: Form(
-                            key: controller.formKey,
-                            child: Column(
-                              children: [
-                                AppTextFormField(
-                                  hint: "Name",
-                                  focusNode: controller.nameFocusNode!,
-                                  controller: controller.name,
-                                  validator: (value) {
-                                    return inputValidate(
-                                        value, "normal text", 4, 10, null);
-                                  },
-                                ),
-                                const SizedBox(
-                                  height: 20,
-                                ),
-                                AppTextFormField(
-                                  hint: "City",
-                                  focusNode: controller.cityFocusNode!,
-                                  controller: controller.city,
-                                  validator: (value) {
-                                    return inputValidate(
-                                        value, "normal text", 4, 10, null);
-                                  },
-                                ),
-                                const SizedBox(
-                                  height: 20,
-                                ),
-                                AppTextFormField(
-                                  hint: "Street",
-                                  focusNode: controller.streetFocusNode!,
-                                  controller: controller.street,
-                                  validator: (value) {
-                                    return inputValidate(
-                                        value, "normal text", 4, 50, null);
-                                  },
-                                ),
-                                const SizedBox(
-                                  height: 20,
-                                ),
-                                AppTextFormField(
-                                  hint: "Details",
-                                  focusNode: controller.detailsFocusNode!,
-                                  controller: controller.details,
-                                  validator: (value) {
-                                    return inputValidate(
-                                        value, "normal text", 4, 50, null);
-                                  },
-                                ),
-                                const SizedBox(
-                                  height: 20,
-                                ),
-                                CustomAppButton(
-                                  text: "Save",
-                                  onPressed: () {
-                                    controller.editAddress();
-                                  },
-                                )
-                              ],
-                            )),
-                      ),
-                    ],
+        builder: (controller) => controller.requestStatus ==
+                RequestStatus.loading
+            ? Center(
+                child: Lottie.asset(AppImageAssets.loadingLottie,
+                    width: 200, height: 200))
+            : ListView(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(10).r,
+                    child: Icon(
+                      Icons.location_on_rounded,
+                      size: 50.r,
+                      color: Colors.pinkAccent,
+                      shadows: const [
+                        Shadow(
+                            blurRadius: 2,
+                            color: Colors.grey,
+                            offset: Offset(1, 1))
+                      ],
+                    ),
                   ),
+                  Padding(
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 10.h, vertical: 20.h),
+                    child: Form(
+                        key: controller.formKey,
+                        child: Column(
+                          children: [
+                            AppTextFormField(
+                              hint: "Name",
+                              focusNode: controller.nameFocusNode!,
+                              controller: controller.name,
+                              validator: (value) {
+                                return inputValidate(
+                                    value, "normal text", 4, 10, null);
+                              },
+                            ),
+                            const SizedBox(
+                              height: 20,
+                            ),
+                            AppTextFormField(
+                              hint: "City",
+                              focusNode: controller.cityFocusNode!,
+                              controller: controller.city,
+                              validator: (value) {
+                                return inputValidate(
+                                    value, "normal text", 4, 10, null);
+                              },
+                            ),
+                            const SizedBox(
+                              height: 20,
+                            ),
+                            AppTextFormField(
+                              hint: "Street",
+                              focusNode: controller.streetFocusNode!,
+                              controller: controller.street,
+                              validator: (value) {
+                                return inputValidate(
+                                    value, "normal text", 4, 50, null);
+                              },
+                            ),
+                            const SizedBox(
+                              height: 20,
+                            ),
+                            AppTextFormField(
+                              hint: "Details",
+                              focusNode: controller.detailsFocusNode!,
+                              controller: controller.details,
+                              validator: (value) {
+                                return inputValidate(
+                                    value, "normal text", 4, 50, null);
+                              },
+                            ),
+                            30.verticalSpace,
+                            CustomAppButton(
+                              text: "Save",
+                              onPressed: () {
+                                controller.editAddress();
+                              },
+                            )
+                          ],
+                        )),
+                  ),
+                ],
+              ),
       ),
     );
   }

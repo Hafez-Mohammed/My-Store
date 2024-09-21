@@ -5,11 +5,13 @@ import 'package:my_store/core/functions/handling_data.dart';
 import 'package:my_store/core/functions/show_erorr_dialog.dart';
 import 'package:my_store/core/functions/show_noInternet_snackbar.dart';
 import 'package:my_store/core/functions/show_server_erorr_snackbar.dart';
+import 'package:my_store/data/data_source/remote/auth/code_verification.dart';
 import 'package:my_store/data/data_source/remote/auth/forget%20password/verify_code.dart';
 
 class CodeVerificationController extends GetxController {
   RequestStatus? requestStatus;
   VerfyCodeData? verfyCodeData;
+  CodeVerificationData? codeVerificationData;
   String? email;
 
   verifyCode(String verificationCode) async {
@@ -34,8 +36,13 @@ class CodeVerificationController extends GetxController {
     }
   }
 
+  resendVerificationCode() {
+    codeVerificationData!.resendCode(email!);
+  }
+
   @override
   void onInit() {
+    codeVerificationData = CodeVerificationData(crud: Get.find());
     verfyCodeData = VerfyCodeData(crud: Get.find());
     email = Get.arguments['email'];
     super.onInit();
